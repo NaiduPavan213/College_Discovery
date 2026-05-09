@@ -3,7 +3,7 @@ import "./globals.css";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "College Discovery",
+  title: "collegewala",
   description: "Find and compare the best colleges in India",
 };
 
@@ -21,22 +21,9 @@ export default function RootLayout({
               href="/colleges"
               className="text-lg font-bold text-gray-900 hover:text-blue-600 transition-colors"
             >
-              🎓 CollegeDiscover
+              🎓 collegewala
             </Link>
-            <div className="flex items-center gap-6">
-              <Link
-                href="/colleges"
-                className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
-              >
-                Colleges
-              </Link>
-              <Link
-                href="/compare"
-                className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
-              >
-                Compare
-              </Link>
-            </div>
+            
           </div>
         </nav>
         {children}

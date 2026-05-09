@@ -72,15 +72,8 @@ function CollegesPageClient() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-6xl mx-auto px-4 pt-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-1">
-            College Discovery
-          </h1>
-          <p className="text-gray-500">
-            Find and compare the best colleges in India
-          </p>
-        </div>
+      <div className="max-w-6xl mx-auto px-4">
+        
       </div>
 
       <div className="sticky top-12 bg-gray-50/80 backdrop-blur-lg z-10 border-b border-gray-200">
