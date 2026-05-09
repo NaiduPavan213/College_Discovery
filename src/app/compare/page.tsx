@@ -1,5 +1,6 @@
 "use client";
-import { Suspense, useEffect, useState } from "react";
+
+import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import CompareTable from "@/components/CompareTable";
@@ -25,7 +26,7 @@ type College = {
   courses: Course[];
 };
 
-function ComparePageClient() {
+export default function ComparePage() {
   const searchParams = useSearchParams();
   const ids = searchParams.get("ids");
   const [colleges, setColleges] = useState<College[]>([]);
@@ -139,13 +140,5 @@ function ComparePageClient() {
         </div>
       </div>
     </div>
-  );
-}
-
-export default function ComparePage() {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <ComparePageClient />
-    </Suspense>
   );
 }
