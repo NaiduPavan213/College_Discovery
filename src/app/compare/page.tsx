@@ -26,7 +26,7 @@ type College = {
   courses: Course[];
 };
 
-function ComparePageClient() {
+export default function ComparePage() {
   const searchParams = useSearchParams();
   const ids = searchParams.get("ids");
   const [colleges, setColleges] = useState<College[]>([]);
@@ -141,8 +141,4 @@ function ComparePageClient() {
       </div>
     </div>
   );
-}
-
-export default function ComparePage() {
-  return <ComparePageClient />;
 }
