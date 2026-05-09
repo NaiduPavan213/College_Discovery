@@ -72,8 +72,7 @@ function CollegesPageClient() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-6xl mx-auto px-4 py-8">
-
+      <div className="max-w-6xl mx-auto px-4 pt-8">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-1">
             College Discovery
@@ -82,22 +81,28 @@ function CollegesPageClient() {
             Find and compare the best colleges in India
           </p>
         </div>
+      </div>
 
-        <div className="mb-6">
-          <FilterPanel
-            search={search}
-            state={state}
-            maxFees={maxFees}
-            sort={sort}
-            loading={loading}
-            onSearch={setSearch}
-            onState={setState}
-            onMaxFees={setMaxFees}
-            onSort={setSort}
-          />
+      <div className="sticky top-12 bg-gray-50/80 backdrop-blur-lg z-10 border-b border-gray-200">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="py-4">
+            <FilterPanel
+              search={search}
+              state={state}
+              maxFees={maxFees}
+              sort={sort}
+              loading={loading}
+              onSearch={setSearch}
+              onState={setState}
+              onMaxFees={setMaxFees}
+              onSort={setSort}
+            />
+          </div>
         </div>
+      </div>
 
-        <div className="mb-4 text-sm text-gray-500">
+      <div className="max-w-6xl mx-auto px-4">
+        <div className="mb-4 text-sm text-gray-500 pt-8">
           {loading ? "Loading..." : `${total} colleges found`}
         </div>
 
