@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 
@@ -25,7 +25,7 @@ type College = {
   courses: Course[];
 };
 
-export default function CollegeDetailPage() {
+function CollegeDetailPageClient() {
   const { id } = useParams();
   const router = useRouter();
   const [college, setCollege] = useState<College | null>(null);
@@ -208,5 +208,13 @@ export default function CollegeDetailPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function CollegeDetailPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <CollegeDetailPageClient />
+    </Suspense>
   );
 }

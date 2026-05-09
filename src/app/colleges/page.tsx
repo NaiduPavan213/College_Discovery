@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, Suspense } from "react";
 import CollegeCard from "@/components/CollegeCard";
 import FilterPanel from "@/components/FilterPanel";
 import CompareBar from "@/components/CompareBar";
@@ -16,7 +16,7 @@ type College = {
   type: string;
 };
 
-export default function CollegesPage() {
+function CollegesPageClient() {
   const [colleges, setColleges] = useState<College[]>([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
@@ -166,5 +166,13 @@ export default function CollegesPage() {
 
       <div className="h-24" />
     </div>
+  );
+}
+
+export default function CollegesPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <CollegesPageClient />
+    </Suspense>
   );
 }
