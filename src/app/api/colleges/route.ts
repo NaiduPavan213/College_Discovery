@@ -7,6 +7,7 @@ export async function GET(req: NextRequest) {
     const search = searchParams.get("search") || "";
     const state = searchParams.get("state") || "";
     const maxFees = searchParams.get("maxFees");
+    const sort = searchParams.get("sort") || "rating_desc";
     const page = parseInt(searchParams.get("page") || "1");
     const limit = parseInt(searchParams.get("limit") || "12");
     const skip = (page - 1) * limit;
@@ -19,12 +20,17 @@ export async function GET(req: NextRequest) {
       ...(maxFees && { fees_per_year: { lte: parseInt(maxFees) } }),
     };
 
+    const lastUnderscoreIndex = sort.lastIndexOf("_");
+    const key = sort.substring(0, lastUnderscoreIndex);
+    const order = sort.substring(lastUnderscoreIndex + 1);
+    const orderBy = { [key]: order };
+
     const [data, total] = await Promise.all([
       prisma.college.findMany({
         where,
         skip,
         take: limit,
-        orderBy: { rating: "desc" },
+        orderBy,
       }),
       prisma.college.count({ where }),
     ]);

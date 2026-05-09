@@ -4,10 +4,12 @@ type Props = {
   search: string;
   state: string;
   maxFees: string;
+  sort: string;
   loading?: boolean;
   onSearch: (v: string) => void;
   onState: (v: string) => void;
   onMaxFees: (v: string) => void;
+  onSort: (v: string) => void;
 };
 
 const STATES = [
@@ -25,9 +27,16 @@ const FEES = [
   { label: "Under ₹5L", value: "500000" },
 ];
 
+const SORTS = [
+  { label: "Highest rated", value: "rating_desc" },
+  { label: "Lowest fees", value: "fees_per_year_asc" },
+  { label: "Best placement", value: "placement_pct_desc" },
+  { label: "Newest", value: "established_desc" },
+];
+
 export default function FilterPanel({
-  search, state, maxFees, loading,
-  onSearch, onState, onMaxFees,
+  search, state, maxFees, sort, loading,
+  onSearch, onState, onMaxFees, onSort,
 }: Props) {
   return (
     <div className="flex flex-col sm:flex-row gap-3">
@@ -78,6 +87,15 @@ export default function FilterPanel({
       >
         {FEES.map((f) => (
           <option key={f.value} value={f.value}>{f.label}</option>
+        ))}
+      </select>
+      <select
+        value={sort}
+        onChange={(e) => onSort(e.target.value)}
+        className="px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+      >
+        {SORTS.map((s) => (
+          <option key={s.value} value={s.value}>{s.label}</option>
         ))}
       </select>
     </div>

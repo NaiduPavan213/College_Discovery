@@ -26,6 +26,7 @@ function CollegesPageClient() {
   const [search, setSearch] = useState("");
   const [state, setState] = useState("");
   const [maxFees, setMaxFees] = useState("");
+  const [sort, setSort] = useState("rating_desc");
 
   const [compareIds, setCompareIds] = useState<number[]>([]);
   const [collegeNames, setCollegeNames] = useState<Record<number, string>>({});
@@ -36,6 +37,7 @@ function CollegesPageClient() {
     if (search) params.set("search", search);
     if (state) params.set("state", state);
     if (maxFees) params.set("maxFees", maxFees);
+    if (sort) params.set("sort", sort);
     params.set("page", page.toString());
     params.set("limit", "12");
 
@@ -45,14 +47,14 @@ function CollegesPageClient() {
     setTotal(data.total || 0);
     setTotalPages(data.totalPages || 1);
     setLoading(false);
-  }, [search, state, maxFees, page]);
+  }, [search, state, maxFees, sort, page]);
 
   useEffect(() => {
     const delay = setTimeout(fetchColleges, 300);
     return () => clearTimeout(delay);
   }, [fetchColleges]);
 
-  useEffect(() => { setPage(1); }, [search, state, maxFees]);
+  useEffect(() => { setPage(1); }, [search, state, maxFees, sort]);
 
   const handleCompareToggle = (id: number) => {
     setCompareIds((prev) => {
@@ -86,10 +88,12 @@ function CollegesPageClient() {
             search={search}
             state={state}
             maxFees={maxFees}
+            sort={sort}
             loading={loading}
             onSearch={setSearch}
             onState={setState}
             onMaxFees={setMaxFees}
+            onSort={setSort}
           />
         </div>
 
