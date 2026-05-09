@@ -86,6 +86,7 @@ function CollegesPageClient() {
             search={search}
             state={state}
             maxFees={maxFees}
+            loading={loading}
             onSearch={setSearch}
             onState={setState}
             onMaxFees={setMaxFees}
