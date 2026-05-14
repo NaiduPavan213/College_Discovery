@@ -76,7 +76,7 @@ function CollegesPageClient() {
         
       </div>
 
-      <div className="sticky top-12 bg-gray-50/80 backdrop-blur-lg z-10 border-b border-gray-200">
+      <div className="sticky top-16 bg-gray-50/80 backdrop-blur-lg z-10 border-b border-gray-200">
         <div className="max-w-6xl mx-auto px-4">
           <div className="py-4">
             <FilterPanel
