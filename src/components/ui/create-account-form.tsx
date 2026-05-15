@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,13 +9,38 @@ import { Label } from "@/components/ui/label";
 import { Mail, User, Lock } from "lucide-react";
 
 export default function CreateAccountForm() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({ name, email, password });
+    setIsLoading(true);
+    setError("");
+
+    try {
+      const res = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, password }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || "An error occurred during registration");
+      }
+
+      router.push("/auth/login");
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -28,6 +54,11 @@ export default function CreateAccountForm() {
           </p>
         </CardHeader>
         <CardContent>
+          {error && (
+            <div className="mb-4 p-3 text-sm text-red-600 bg-red-50 border border-red-200 rounded-md">
+              {error}
+            </div>
+          )}
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
               <Label htmlFor="name">Full Name</Label>
@@ -76,9 +107,10 @@ export default function CreateAccountForm() {
 
             <Button
               type="submit"
+              disabled={isLoading}
               className="w-full rounded-xl hover:cursor-pointer text-white font-medium shadow-md"
             >
-              Get Started
+              {isLoading ? "Creating Account..." : "Get Started"}
             </Button>
           </form>
 

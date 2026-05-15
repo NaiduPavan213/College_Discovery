@@ -98,7 +98,7 @@ const SignInBlock = () => {
       if (formData.rememberMe) {
         localStorage.setItem("rememberMe", "true");
       }
-      router.push("/compare");
+      router.push("/colleges");
     }
   };
 
