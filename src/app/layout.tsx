@@ -11,7 +11,7 @@ const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "collegewala",
+  title: "campasso",
   description: "Discover your dream college",
 };
 
@@ -30,7 +30,7 @@ export default async function RootLayout({
             <nav className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
               <div className="flex-shrink-0">
                 <Link href="/" className="text-2xl font-bold text-gray-900">
-                  collegewala
+                  campasso
                 </Link>
               </div>
               <div className="flex items-center space-x-4">
