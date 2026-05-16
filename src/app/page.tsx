@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
+import { Component as AuroraFlow } from "@/components/ui/aurora-flow";
 
 export default function Home() {
-  redirect("/colleges");
+  return <AuroraFlow />;
 }
