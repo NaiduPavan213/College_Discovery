@@ -53,7 +53,7 @@ export const Component = () => {
       </nav>
 
       {/* Hero Section */}
-      <div className="relative min-h-screen bg-[#021114] flex flex-col items-center pt-[120px] pb-10 px-6 text-white overflow-hidden">
+      <div className="relative min-h-screen !bg-[#021114] flex flex-col items-center pt-[120px] pb-10 px-6 text-white overflow-hidden">
         
         {/* Core content wrapper */}
         <div className="relative z-10 flex flex-col items-center w-full max-w-4xl flex-grow">
